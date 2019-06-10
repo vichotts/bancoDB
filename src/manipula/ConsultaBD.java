@@ -19,24 +19,21 @@ public class ConsultaBD {
 			try {
 				
                                     String sql = "SELECT id, nome,senha,email,sexo,estado FROM pessoa, ORDER BY id";
-				PreparedStatement stmt = bd.con.prepareStatement(sql);
-				
-		
-								
-				ResultSet rs = stmt.executeQuery();
-				
-				System.out.println("ID        NOME                        SENHA");
-				System.out.println("--------  -------------------------   ------");
-				
-				while (rs.next()) {
-					int id = rs.getInt("id");
-					String nome = rs.getString("nome");
-                                        String senha = rs.getString("senha");
-					System.out.println(id + "        " + nome + "                         " + senha+ "       ");
-				}
-				
-				rs.close();
-				stmt.close();
+                            try (PreparedStatement stmt = bd.con.prepareStatement(sql)) {
+                                ResultSet rs = stmt.executeQuery();
+                                
+                                System.out.println("ID        NOME                        SENHA");
+                                System.out.println("--------  -------------------------   ------");
+                                
+                                while (rs.next()) {
+                                    int id = rs.getInt("id");
+                                    String nome = rs.getString("nome");
+                                    String senha = rs.getString("senha");
+                                    System.out.println(id + "        " + nome + "                         " + senha+ "       ");
+                                }
+                                
+                                rs.close();
+                            }
 				bd.close();
 				
 			} catch (SQLException e) {
