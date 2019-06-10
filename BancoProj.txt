@@ -1,0 +1,32 @@
+id
+nome
+senha
+email
+sexo
+estado
+
+CREATE DATABASE crud;
+
+CREATE TABLE dbcrud( 
+
+id int NOT NULL AUTO_INCREMENT,
+
+nome varchar(30) NOT NULL,
+
+senha char(6) NOT NULL,
+
+email varchar(40) NOT NULL,
+
+sexo ENUM ('Masculino', 'Feminino') NOT NULL,
+
+estado varchar(2) NOT NULL,
+PRIMARY KEY(id)
+
+);
+
+INSERT INTO dbcrud (id,nome,senha,email,sexo,estado)
+
+VALUES (1, "Victor Hotts","123456","vic_tricolor@hotmail.com","Masculino", "SP");
+INSERT INTO dbcrud (id,nome,senha,email,sexo,estado)
+
+VALUES (2, "Ana Clara","bo1234","ana@ho952tmail.com","Feminino", "RJ");
