@@ -14,14 +14,14 @@ public class ConsultaBD {
 		
 		ModuloConexao bd = new ModuloConexao();
 		
-		if (bd.abreConexao() ) {
+		if (bd.getConnection() ) {
 			
 			try {
 				
-				String sql = "SELECT id, nome,senha,email,sexo,estado FROM crud WHERE id >= ? ORDER BY id";
+                                    String sql = "SELECT id, nome,senha,email,sexo,estado FROM pessoa, ORDER BY id";
 				PreparedStatement stmt = bd.con.prepareStatement(sql);
 				
-				stmt.setString(1, "2");
+		
 								
 				ResultSet rs = stmt.executeQuery();
 				
@@ -29,15 +29,15 @@ public class ConsultaBD {
 				System.out.println("--------  -------------------------   ------");
 				
 				while (rs.next()) {
-					String id = rs.getString("id");
+					int id = rs.getInt("id");
 					String nome = rs.getString("nome");
                                         String senha = rs.getString("senha");
-					System.out.println(id + "        " + nome + "                         " + senha);
+					System.out.println(id + "        " + nome + "                         " + senha+ "       ");
 				}
 				
 				rs.close();
 				stmt.close();
-				bd.fechaConexao();
+				bd.close();
 				
 			} catch (SQLException e) {
 				System.out.println(e.toString());

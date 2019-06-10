@@ -14,7 +14,7 @@ public class InsertDB {
 		
 		ModuloConexao bd = new ModuloConexao();
 		
-		if (bd.abreConexao() ) {
+		if (bd.getConnection() ) {
 			
 			try {
 				
@@ -42,7 +42,7 @@ public class InsertDB {
 				}				
 				
 				stmt.close();
-				bd.fechaConexao();
+				bd.close();
 				
 			} catch (SQLException e) {
 				System.out.println(e.toString());
